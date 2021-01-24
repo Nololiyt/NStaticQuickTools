@@ -2,30 +2,35 @@
 
 <head>
     <title>
-        Guid Generator
+        Guid String Generator
     </title>
 </head>
 
 <body>
     <h1>Welcome to NStaticQuickTools!</h1>
     <p>
-        It is a nonstandard guid generator. We recommend <a href="https://www.guidgen.com/">www.guidgen.com</a> more.
+        Here is a nonstandard guid string generator. We recommend <a href="https://www.guidgen.com/">www.guidgen.com</a> more.
     </p>
-    <script>
-        function theFunction() {
-            document.getElementById('output').innerHTML = Date();
-            var result = (S4() + S4() + "-" + S4() + "-" + S4() + "-" + S4() + "-" + S4() + S4() + S4());
-            document.getElementById('output').innerHTML = result;
-        }
+    <p>
+        <script>
+            function theFunction() {
+                var result = "\"" + S4() + S4() + "-" + S4() + "-" + S4() + "-" + S4() + "-" + S4() + S4() + S4() + "\"";
+                document.getElementById('output').innerHTML = result;
+            }
 
-        function S4() {
-            return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
-        }
-    </script>
-    <button type="button" onclick="theFunction()">Click to generate a new guid.</button>
+            function S4() {
+                return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
+            }
+        </script>
 
-    <p id="output"></p>
+        <button type="button" onclick="theFunction()">Click to generate a new guid string.</button>
 
+        <p id="output"></p>
+
+        <script>
+            theFunction();
+        </script>
+    </p>
     <footer>
         <p>
             ====================================
