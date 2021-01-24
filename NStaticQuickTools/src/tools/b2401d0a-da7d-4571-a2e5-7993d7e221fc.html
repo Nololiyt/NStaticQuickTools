@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+
+<head>
+    <title>
+        Guid Generator
+    </title>
+</head>
+
+<body>
+    <h1>Welcome to NStaticQuickTools!</h1>
+    <p>
+        It is a nonstandard guid generator. We recommend <a href="https://www.guidgen.com/">www.guidgen.com</a> more.
+    </p>
+    <script>
+        function theFunction() {
+            document.getElementById('output').innerHTML = Date();
+            var result = (S4() + S4() + "-" + S4() + "-" + S4() + "-" + S4() + "-" + S4() + S4() + S4());
+            document.getElementById('output').innerHTML = result;
+        }
+
+        function S4() {
+            return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
+        }
+    </script>
+    <button type="button" onclick="theFunction()">Click to generate a new guid.</button>
+
+    <p id="output"></p>
+
+    <footer>
+        <p>
+            ====================================
+        </p>
+        <p>
+            Now it's the footer! <a href="../index.html">Back to the index page.</a>
+        </p>
+    </footer>
+</body>
