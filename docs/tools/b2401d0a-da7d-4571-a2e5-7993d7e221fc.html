@@ -9,13 +9,13 @@
 <body>
     <h1>Welcome to NStaticQuickTools!</h1>
     <p>
-        Here is a guid string generator. This tool is based on <a href="https://github.com/vczero/guid" target="_blank">guid</a>. We recommend <a href="https://www.guidgen.com/" target="_blank">www.guidgen.com</a> more.
+        Here is a guid string generator. This tool is based on <a href="http://nickfogle.github.io/StringGenerator/index.html" target="_blank">StringGenerator</a>. We recommend <a href="https://www.guidgen.com/" target="_blank">www.guidgen.com</a> more.
     </p>
     <p>
-        <script type="text/javascript" src="./libs/guid_js.js"></script>
+        <script type="text/javascript" src="./libs/randomGen.js"></script>
         <script>
             function theFunction() {
-                var result = "\"" + guid.create().toLowerCase() + "\"";
+                var result = "\"" + Math.xxid().toLowerCase() + "\"";
                 document.getElementById('output').innerHTML = result;
             }
         </script>
