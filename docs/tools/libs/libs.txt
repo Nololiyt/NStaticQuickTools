@@ -1,0 +1,4 @@
+guid_js: https://github.com/vczero/guid/blob/master/guid_js.js
+jquery.min: https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js
+jsQR: https://cozmo.github.io/jsQR/jsQR.js
+base64.min: https://cdn.jsdelivr.net/npm/js-base64@3.6.0/base64.min.js
