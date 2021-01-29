@@ -9,9 +9,11 @@
 <body>
     <h1>Welcome to NStaticQuickTools!</h1>
     <p>
-        Here is a QR code scanner. The result is raw bytes' array, you may convert it by other tools later. This tool is based on <a href="https://cozmo.github.io/jsQR/" target="_blank">jsQR</a>.
+        Here is a QR code scanner. The result are base64 strings of the raw bytes, you may convert it by other tools later. This tool is based on <a href="https://cozmo.github.io/jsQR/" target="_blank">jsQR</a> and <a href="https://github.com/dankogai/js-base64"
+            target="_blank">js-base64</a>.
     </p>
     <p>
+        <script src="./libs/base64.min.js"></script>
         <script src="./libs/jquery.min.js"></script>
         <script src="./libs/jsQR.js"></script>
         <canvas id="qrcanvas" style="display:none;"></canvas>
@@ -42,15 +44,8 @@
                     var imageData = ctx.getImageData(0, 0, img.width, img.height);
                     const code = jsQR(imageData.data, imageData.width, imageData.height);
                     if (code) {
-                        var ed = code.binaryData.toString().split(",");
-                        var result = "["
-                        for (var i = 0; i < ed.length; i++) {
-                            result += ed[i];
-                            result += ", "
-                        }
-                        result = result.substring(0, result.length - 2);
-                        result += "]"
-                        document.getElementById("output").innerHTML = result;
+                        var ed = new Uint8Array(code.binaryData);
+                        document.getElementById("output").innerHTML = Base64.fromUint8Array(ed);
                     }
                 };
             }
