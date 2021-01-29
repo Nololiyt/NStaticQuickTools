@@ -9,53 +9,34 @@
 <body>
     <h1>Welcome to NStaticQuickTools!</h1>
     <p>
-        Here is a base64 string - file converter. The base64 strings should not contain the MIME type.
+        Here is a base64 string - file converter. The base64 strings should not contain the MIME type. This tool is based on <a href="https://github.com/dankogai/js-base64" target="_blank">js-base64</a>.
     </p>
     <p>
+        <script src="./libs/base64.min.js"></script>
         <script>
             function toFile() {
-                function dataURLtoBlob(dataurl) {
-                    var arr = dataurl.split(','),
-                        mime = arr[0].match(/:(.*?);/)[1],
-                        bstr = atob(arr[1]),
-                        n = bstr.length,
-                        u8arr = new Uint8Array(n);
-                    while (n--) {
-                        u8arr[n] = bstr.charCodeAt(n);
-                    }
-                    return new Blob([u8arr], {
-                        type: mime
-                    });
-                }
-
-                function downloadFile(url) {
-                    var a = document.createElement("a");
-                    a.setAttribute("href", url);
-                    a.setAttribute("download", "add its extension behind");
-                    a.setAttribute("target", "_blank");
-                    var clickEvent = document.createEvent("MouseEvents");
-                    clickEvent.initEvent("click", true, true);
-                    a.dispatchEvent(clickEvent);
-                }
-
-                function downloadFileByBase64(base64) {
-                    var myBlob = dataURLtoBlob(base64);
-                    var myUrl = URL.createObjectURL(myBlob);
-                    downloadFile(myUrl);
-                }
-
-                downloadFileByBase64('data:application/octet-stream;base64,' + document.getElementById("input1").value);
+                var base64String = document.getElementById("input1").value;
+                var blob = new Blob([Base64.toUint8Array(base64String)], {
+                    type: "application/octet-stream"
+                });
+                var url = URL.createObjectURL(blob);
+                var a = document.createElement("a");
+                a.setAttribute("href", url);
+                a.setAttribute("download", "add its extension behind");
+                a.setAttribute("target", "_blank");
+                var clickEvent = document.createEvent("MouseEvents");
+                clickEvent.initEvent("click", true, true);
+                a.dispatchEvent(clickEvent);
             }
 
             function toBase64(obj) {
-                var image = obj.files[0];
+                var file = obj.files[0];
                 var reader = new FileReader();
-                reader.readAsDataURL(image);
                 reader.onload = function(ev) {
                     document.getElementById("input1").value =
-                        ev.target.result.split("base64,")[1];
+                        Base64.fromUint8Array(new Uint8Array(ev.target.result));
                 }
-                console.log(image);
+                reader.readAsArrayBuffer(file);
             }
         </script>
 
