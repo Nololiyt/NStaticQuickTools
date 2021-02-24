@@ -1,12 +1,11 @@
 // vite.config.js
 const { resolve } = require('path')
-const { readdirSync } = require('fs')
+import { tools } from './tools';
 
-const tools = readdirSync('./tools').filter(f => f.endsWith('.html'))
-    .map((name) => ({
-        [name]: resolve(__dirname, 'tools', name)
+let toolsPages = tools.map((tool) => ({
+        [tool.guid]: resolve(__dirname, 'tools', tool.guid + ".html")
     }))
-    .reduce((a, b) => ({...a, ...b }), {})
+    .reduce((a, b) => ({...a, ...b }), {});
 
 /**
  * @type {import('vite').UserConfig}
@@ -16,7 +15,7 @@ module.exports = {
         rollupOptions: {
             input: {
                 main: resolve(__dirname, 'index.html'),
-                ...tools
+                ...toolsPages
             }
         }
     }
