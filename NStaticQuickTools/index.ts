@@ -1,4 +1,4 @@
-import { tools } from './toolsProvider';
+import { tools } from './tools';
 
 function printTool(name:string, guid:string, description:string) {
     var ul = document.getElementById("toolList");
