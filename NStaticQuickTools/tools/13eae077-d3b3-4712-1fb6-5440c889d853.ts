@@ -30,3 +30,5 @@ function theFunction() {
     input3.value = count.toString();
     document.getElementById("output").innerHTML = result;
 }
+document.getElementById('inputButton').onclick = theFunction;
+theFunction();

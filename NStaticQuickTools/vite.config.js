@@ -12,7 +12,6 @@ const tools = readdirSync('./tools').filter(f => f.endsWith('.html'))
  * @type {import('vite').UserConfig}
  */
 module.exports = {
-    base: '',
     build: {
         rollupOptions: {
             input: {
