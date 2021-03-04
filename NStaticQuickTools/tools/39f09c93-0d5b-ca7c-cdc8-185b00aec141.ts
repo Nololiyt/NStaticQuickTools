@@ -1,24 +1,24 @@
 import { Base64 } from 'js-base64';
+import { StringJointer } from 'string-jointer';
 
 function getInput(name: string): HTMLInputElement {
     return document.getElementById(name) as HTMLInputElement;
 }
 
+function* numbersToStrings(numbers: Iterable<number>) {
+    for (let number of numbers)
+        yield number.toString();
+}
 function toByteArray() {
-    var base64 = getInput("input1").value;
-    var uintArray = Base64.toUint8Array(base64);
-    var result = "[";
-    for (var i = 0; i < uintArray.length; i++) {
-        result += uintArray[i];
-        result += ", "
-    }
-    result = result.substring(0, result.length - 2);
-    result += "]"
-    getInput("input2").value = result;
+    let base64 = getInput("input1").value;
+    let uintArray = Base64.toUint8Array(base64);
+    getInput("input2").value = new StringJointer(", ", "[", "]").addMany(
+        numbersToStrings(uintArray)
+    ).toString();
 }
 
 function toBase64() {
-    var byteArray = new Uint8Array(eval((getInput("input2").value)));
+    let byteArray = new Uint8Array(eval((getInput("input2").value)));
     getInput("input1").value = Base64.fromUint8Array(byteArray);
 }
 
