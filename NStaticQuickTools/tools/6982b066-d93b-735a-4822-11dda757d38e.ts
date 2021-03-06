@@ -8,17 +8,14 @@ function theFunction() {
     let file = getInput("input").files[0];
     if (window.FileReader) {
         let fr = new FileReader();
+        fr.onloadend = base64ToqR;
         fr.readAsDataURL(file);
-        fr.onloadend = function (e) {
-            let base64Data = e.target.result;
-            base64ToqR(base64Data);
-        }
     }
 }
 
-function base64ToqR(data) {
+function base64ToqR(data: ProgressEvent<FileReader>) {
     let img = new Image();
-    img.src = data;
+    img.src = data.target.result as string;
     img.onload = function () {
         let canvas = document.createElement("canvas") as HTMLCanvasElement;
         canvas.hidden = true;
