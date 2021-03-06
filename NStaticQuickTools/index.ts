@@ -1,10 +1,10 @@
 import { tools } from './tools';
 
 function printTool(name:string, guid:string, description:string) {
-    var ul = document.getElementById("toolList");
-    var li = document.createElement("li");
+    let ul = document.getElementById("toolList");
+    let li = document.createElement("li");
     
-    var a = document.createElement("a");
+    let a = document.createElement("a");
     a.href = "./tools/" + guid + ".html";
     a.innerText=name;
     li.appendChild(a);
@@ -12,7 +12,7 @@ function printTool(name:string, guid:string, description:string) {
     ul.appendChild(li);
 }
 
-for (var i = 0; i < tools.length; i++) {
-    var tool = tools[i];
+for (let i = 0; i < tools.length; i++) {
+    let tool = tools[i];
     printTool(tool.name, tool.guid, tool.description);
 }
