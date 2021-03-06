@@ -5,15 +5,11 @@ function getInput(name: string): HTMLInputElement {
     return document.getElementById(name) as HTMLInputElement;
 }
 
-function* numbersToStrings(numbers: Iterable<number>) {
-    for (let number of numbers)
-        yield number.toString();
-}
 function toByteArray() {
     let base64 = getInput("input1").value;
     let uintArray = Base64.toUint8Array(base64);
     getInput("input2").value = new StringJointer(", ", "[", "]").addMany(
-        numbersToStrings(uintArray)
+        Array.from(uintArray, x => x.toString())
     ).toString();
 }
 
