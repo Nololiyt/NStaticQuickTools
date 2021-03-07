@@ -21,7 +21,6 @@ function theFunction() {
     }
     let count = parseInt(input3.value);
 
-
     let jointer = new StringJointer(", ", "[", "]");
     for (let i = 0; i < count; i++) {
         let val = Math.floor(Math.random() * (max - min)) + min;

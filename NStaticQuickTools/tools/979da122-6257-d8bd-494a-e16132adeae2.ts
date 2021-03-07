@@ -17,6 +17,7 @@ function toFile() {
     let clickEvent = document.createEvent("MouseEvents");
     clickEvent.initEvent("click", true, true);
     a.dispatchEvent(clickEvent);
+    document.removeChild(a);
 }
 
 function toBase64() {
