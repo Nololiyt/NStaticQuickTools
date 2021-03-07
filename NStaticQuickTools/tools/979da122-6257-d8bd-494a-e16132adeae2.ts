@@ -11,13 +11,12 @@ function toFile() {
     });
     let url = URL.createObjectURL(blob);
     let a = document.createElement("a");
-    a.setAttribute("href", url);
-    a.setAttribute("download", "add its extension behind");
-    a.setAttribute("target", "_blank");
+    a.href = url;
+    a.download = "add its extension behind";
+    a.target = "_blank";
     let clickEvent = document.createEvent("MouseEvents");
     clickEvent.initEvent("click", true, true);
     a.dispatchEvent(clickEvent);
-    document.removeChild(a);
 }
 
 function toBase64() {

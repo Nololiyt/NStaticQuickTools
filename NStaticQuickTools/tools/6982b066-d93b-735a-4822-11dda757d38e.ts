@@ -17,8 +17,7 @@ function base64ToqR(data: ProgressEvent<FileReader>) {
     let img = new Image();
     img.src = data.target.result as string;
     img.onload = function () {
-        let canvas = document.createElement("canvas") as HTMLCanvasElement;
-        canvas.hidden = true;
+        let canvas = document.createElement("canvas");
         canvas.width = img.width;
         canvas.height = img.height;
 
@@ -26,12 +25,11 @@ function base64ToqR(data: ProgressEvent<FileReader>) {
         ctx.drawImage(img, 0, 0, img.width, img.height);
         let imageData = ctx.getImageData(0, 0, img.width, img.height);
 
-        const code = jsQR(imageData.data, imageData.width, imageData.height);
+        let code = jsQR(imageData.data, imageData.width, imageData.height);
         if (code) {
             let ed = new Uint8Array(code.binaryData);
             document.getElementById("output").innerHTML = Base64.fromUint8Array(ed);
         }
-        document.removeChild(canvas);
     };
 }
 document.getElementById('input').onchange = theFunction;
